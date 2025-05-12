@@ -68,6 +68,7 @@ const jwt=localStorage.getItem("jwt")
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProduct({data:productData,jwt}))
+    alert("Product Added Successfully");
     console.log(productData);
   };
 

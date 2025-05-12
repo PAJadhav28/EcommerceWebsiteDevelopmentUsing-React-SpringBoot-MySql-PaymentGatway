@@ -67,6 +67,7 @@ export const getAllCustomers = (token) => {
         }
       });
       const users = response.data;
+    console.log("API response data:", users);
       dispatch({ type: GET_ALL_CUSTOMERS_SUCCESS, payload: users });
       console.log("All Customers",users)
     } catch (error) {
