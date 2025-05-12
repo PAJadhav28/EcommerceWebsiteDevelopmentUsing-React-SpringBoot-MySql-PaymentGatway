@@ -16,11 +16,19 @@ import { getAllCustomers } from '../../../Redux/Auth/Action'
 import { useDispatch, useSelector } from "react-redux";
 
 
-
 const Customers = () => {
   const navigate=useNavigate();
   const dispatch = useDispatch();
   const {auth}=useSelector(store=>store)
+  console.log('auth customers:', auth.customers);
+  console.log("auth:", auth);
+console.log("auth.customers:", auth.customers);
+console.log("type of auth.customers:", typeof auth.customers);
+
+if (auth.customers && !Array.isArray(auth.customers)) {
+  console.log("auth.customers keys:", Object.keys(auth.customers));
+}
+
 
   useEffect(()=>{
     console.log("customer table use effect")
@@ -48,8 +56,12 @@ const Customers = () => {
               
             </TableRow>
           </TableHead>
-          <TableBody>
-            {auth.customers.map(item => (
+          
+          {/* <TableBody>
+            
+             {auth.customers.map(item => ( 
+            {Array.isArray(auth.customers) &&
+    auth.customers.map(item => (
               <TableRow hover key={item.name} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>
                 <TableCell> <Avatar >{item.firstName[0].toUpperCase()}</Avatar> </TableCell>
                 <TableCell>{item.firstName} {item.lastName}</TableCell>
@@ -57,10 +69,29 @@ const Customers = () => {
                 
                 
                
-               
+          
               </TableRow>
             ))}
-          </TableBody>
+          </TableBody> */}
+
+
+{/* ===================== */}
+<TableBody>
+  {Array.isArray(auth.customers) && auth.customers.length > 0 ? (
+    auth.customers.map(item => (
+      <TableRow hover key={item.name}>
+        <TableCell><Avatar>{item.firstName?.[0]?.toUpperCase()}</Avatar></TableCell>
+        <TableCell>{item.firstName} {item.lastName}</TableCell>
+        <TableCell>{item.email}</TableCell>
+      </TableRow>
+    ))
+  ) : (
+    <TableRow>
+      <TableCell colSpan={3}>No customers found</TableCell>
+    </TableRow>
+  )}
+</TableBody>
+
         </Table>
       </TableContainer>
     </Card>

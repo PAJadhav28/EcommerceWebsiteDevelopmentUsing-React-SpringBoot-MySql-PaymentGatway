@@ -45,7 +45,8 @@ const authReducer = (state = initialState, action) => {
         return {
           ...state,
           isLoading: false,
-          customers: action.payload,
+          // customers: action.payload,
+          customers: action.payload.customers, // ✅ correct
         };
     case GET_USER_FAILURE:
       return {
