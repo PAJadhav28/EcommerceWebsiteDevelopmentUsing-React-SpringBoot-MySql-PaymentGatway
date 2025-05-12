@@ -80,7 +80,7 @@ export default function Product() {
       minDiscount: disccount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
-      pageSize: 10,
+      pageSize: 9,
       stock: stock,
     };
     dispatch(findProducts(data));
