@@ -1,6 +1,6 @@
 import React from "react";
-import { Badge, Button } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import CartItem from "../Cart/CartItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,26 +9,25 @@ import AddressCard from "../address/AddressCard";
 import { createPayment } from "../../../Redux/Customers/Payment/Action";
 
 const OrderSummary = () => {
-  const navigate = useNavigate();
+  
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-const orderId = searchParams.get("order_id");
-const dispatch=useDispatch();
-  const jwt=localStorage.getItem("jwt");
-  const {order}=useSelector(state=>state)
+  const orderId = searchParams.get("order_id");
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { order } = useSelector(state => state)
 
-console.log("orderId ", order.order)
+  console.log("orderId ", order.order)
 
-useEffect(()=>{
-  
-  dispatch(getOrderById(orderId))
-},[orderId])
+  useEffect(() => {
+    dispatch(getOrderById(orderId))
+  }, [orderId, dispatch])
 
-const handleCreatePayment=()=>{
-  const data={orderId:order.order?.id,jwt}
-  console.log("Payment Data: ", data);
-  dispatch(createPayment(data))
-}
+  const handleCreatePayment = () => {
+    const data = { orderId: order.order?.id, jwt }
+    console.log("Payment Data: ", data);
+    dispatch(createPayment(data))
+  }
   
 
   return (

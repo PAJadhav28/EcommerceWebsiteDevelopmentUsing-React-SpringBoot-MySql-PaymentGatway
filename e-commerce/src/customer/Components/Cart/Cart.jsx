@@ -1,6 +1,6 @@
 import React from "react";
 import CartItem from "./CartItem";
-import { Badge, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -15,7 +15,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getCart(jwt));
-  }, [jwt]);
+  }, [jwt, dispatch]);
   
   return (
     <div className="">

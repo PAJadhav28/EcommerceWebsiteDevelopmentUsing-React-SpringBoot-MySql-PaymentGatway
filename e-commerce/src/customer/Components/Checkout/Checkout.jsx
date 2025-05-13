@@ -45,9 +45,6 @@ console.log("step",step)
     setActiveStep(0);
   };
 
-  const handlePayment=()=>{
-    console.log("handle payment")
-  }
 
   return (
     <Box className="px-5 lg:px-32 " sx={{ width: "100%" }}>
@@ -78,7 +75,7 @@ console.log("step",step)
           <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
             <Button
               color="inherit"
-              disabled={step == 2}
+              disabled={step === 2}
               onClick={handleBack}
               sx={{ mr: 1 }}
             >
@@ -91,7 +88,7 @@ console.log("step",step)
           {/* <Typography sx={{ my: 6 }}>Title</Typography> */}
 
           <div className="my-5">
-            {step == 2? <AddDeliveryAddressForm handleNext={handleNext} />:<OrderSummary/>}
+            {step === 2 ? <AddDeliveryAddressForm handleNext={handleNext} /> : <OrderSummary />}
           </div>
 
           {/* <AddDeliveryAddressForm handleNext={handleNext} /> */}
